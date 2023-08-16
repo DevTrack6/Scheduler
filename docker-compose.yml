@@ -2,17 +2,13 @@ version: "3"
 
 services:
   backend:
-    depends_on:
-      - db
     build:
       context: scheduler
       dockerfile: dockerfile
+    depends_on:
+      - db
     ports:
       - "8000:8000"
-    volumes:
-      - ./scheduler:/app
-    command: 
-      - ./start.sh
 
   nginx:
     depends_on:
