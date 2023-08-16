@@ -13,4 +13,8 @@ RUN pip install --no-cache-dir -r requirements.txt
 
 COPY . ${APP_NAME}
 
-CMD [ "python", "manage.py", "runserver", "0.0.0.0:8000" ]
+COPY ./start.sh /start
+RUN sed -i 's/\r$//g' /start
+RUN chmod +x /start
+
+CMD [ "/start" ]
