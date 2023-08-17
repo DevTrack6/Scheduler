@@ -36,7 +36,7 @@ pipeline {
         sh 'ssh-keyscan -t rsa ${SERVER_IP} >> ~/.ssh/known_hosts'
         sh '''
           sshpass -p ${SSH_PASSWORD} ssh ${SSH_USERNAME}@${SERVER_IP} \
-          "pwd \
+          "pwd
           ls -al"
         '''
       }
