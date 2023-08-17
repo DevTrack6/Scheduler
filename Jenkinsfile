@@ -36,7 +36,8 @@ pipeline {
           "echo docker login
           docker login -u ${NCP_ACCESS_KEY} -p ${NCP_SECRET_KEY} ${REGISTRY_URL}
           docker pull ${REGISTRY_URL}/${IMG_NAME}:${IMG_TAG}
-          docker run -d -p 8000:8000 \
+          docker stop scheduler
+          docker run -d --rm -p 8000:8000 \
             --name scheduler \
             --env-file .env \
             ${REGISTRY_URL}/${IMG_NAME}:${IMG_TAG}"
