@@ -1,5 +1,5 @@
 pipeline {
-  agent none
+  agent any
   environment {
     IMG_NAME = "schedule"
     IMG_TAG = "latest"
@@ -12,14 +12,12 @@ pipeline {
   }
   stages{
     stage("build"){
-      agent any
       steps{
         echo "build ${REGISTRY_URL}/$IMG_NAME:${IMG_TAG}"
         sh 'docker build -t ${REGISTRY_URL}/${IMG_NAME}:${IMG_TAG} scheduler'
       }
     }
     stage("push"){
-      agent any
       steps{
         echo 'docker login'
         sh 'docker login -u ${NCP_ACCESS_KEY} -p ${NCP_SECRET_KEY} ${REGISTRY_URL}'
@@ -29,7 +27,6 @@ pipeline {
       }
     }
     stage("deploy"){
-      agent any
       steps{
         echo 'connect ssh and deploy'
         sh 'mkdir -p ~/.ssh'
