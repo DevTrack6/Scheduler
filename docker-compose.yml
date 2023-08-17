@@ -9,6 +9,10 @@ services:
       - db
     ports:
       - "8000:8000"
+    volumes:
+      - ./scheduler:/app
+    env_file:
+      - .env.local
 
   nginx:
     depends_on:
