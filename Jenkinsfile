@@ -34,7 +34,9 @@ pipeline {
         echo 'connect ssh and deploy'
         sh 'mkdir -p ~/.ssh'
         sh 'ssh-keyscan -t rsa ${SERVER_IP} >> ~/.ssh/known_hosts'
-        sh 'sshpass -p ${SSH_PASSWORD} ssh ${SSH_USERNAME}@${SERVER_IP} "cd sechedule;git pull;docker login -u ${NCP_ACCESS_KEY} -p ${NCP_SECRET_KEY} ${REGISTRY_URL};docker compose up -d"'
+        sh 'sshpass -p ${SSH_PASSWORD} ssh ${SSH_USERNAME}@${SERVER_IP}'
+        sh 'pwd'
+        sh 'w'
       }
     }
   }
