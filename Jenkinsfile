@@ -31,9 +31,6 @@ pipeline {
     stage("deploy"){
       agent any
       steps{
-        echo 'install sshpass'
-        sh 'apt-get update && apt-get install -y sshpass'
-
         echo 'connect ssh and deploy'
         sh 'mkdir ~/.ssh'
         sh 'ssh-keyscan -t rsa ${SERVER_IP} >> ~/.ssh/known_hosts'
