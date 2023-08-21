@@ -17,3 +17,4 @@
 # [fix] AA 버그 수정
 #
 # AA함수에서 발생하는 오류를 수정함
+# git config --global commit.template <.gitmessage.txt 경로>
