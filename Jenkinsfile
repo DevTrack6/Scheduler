@@ -3,7 +3,7 @@ pipeline {
   environment {
     IMG_NAME = "schedule"
     IMG_TAG = "latest"
-    SERVER_IP = "223.130.130.247"
+    HOST_URL = "223.130.130.247"
     REGISTRY_URL = "limeskin.kr.ncr.ntruss.com"
     NCP_ACCESS_KEY = credentials('NCP_ACCESS_KEY')
     NCP_SECRET_KEY = credentials('NCP_SECRET_KEY') 
@@ -31,9 +31,9 @@ pipeline {
       steps{
         echo 'connect ssh and deploy'
         sh 'mkdir -p ~/.ssh'
-        sh 'ssh-keyscan -t rsa ${SERVER_IP} >> ~/.ssh/known_hosts'
+        sh 'ssh-keyscan -t rsa ${HOST_URL} >> ~/.ssh/known_hosts'
         sh '''
-          sshpass -p ${SSH_PASSWORD} ssh ${SSH_USERNAME}@${SERVER_IP} \
+          sshpass -p ${SSH_PASSWORD} ssh ${SSH_USERNAME}@${HOST_URL} \
           "echo docker login
           docker login -u ${NCP_ACCESS_KEY} -p ${NCP_SECRET_KEY} ${REGISTRY_URL}
           docker pull ${REGISTRY_URL}/${IMG_NAME}:${IMG_TAG}
