@@ -14,17 +14,6 @@ services:
     env_file:
       - .env.local
 
-  nginx:
-    depends_on:
-      - backend
-    build:
-      context: .
-      dockerfile: dockerfile.nginx
-    ports:
-      - "8888:80"
-    env_file:
-      - .env.local
-
   db:
     image: postgres:15
     ports:
