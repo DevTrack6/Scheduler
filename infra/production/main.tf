@@ -1,10 +1,11 @@
 terraform {
-  backend "local" {
-    path = "/Users/junyoung_kim/DRF_study/terraform_study/states/staging.tfstate"
-  }
   required_providers {
     ncloud = {
       source = "NaverCloudPlatform/ncloud"
+    }
+    ssh = {
+      source = "loafoe/ssh"
+      version = "2.6.0"
     }
   }
   required_version = ">= 0.13"
@@ -18,6 +19,8 @@ provider "ncloud" {
   site = "PUBLIC"
   support_vpc = true
 }
+
+provider "ssh" {}
 
 locals {
   env = "prod"
